@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+
+        #proposal {
+            position: relative;
+            max-width: 600px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #proposal img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+        }
+
+        #question {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="proposal">
+        <img src="./images__1_-removebg-preview.png" alt="Proposal Image">
+        <div id="question">
+            <h2>I love you, do you love me?</h2>
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn" onclick="handleNoButtonClick()">No</button>
+        </div>
+    </div>
+
+    <script>
+        let questionIndex = 0;
+
+        const followUpQuestions = [
+            "seriously not?",
+            "Are you sure?",
+            "What can I do to change your mind?",
+            "Maybe reconsider?",
+            "Please reconsider?",
+            "I really want to know, do you love me?",
+            "Can you give me a chance?",
+            "I'll do anything for you, do you love me?",
+            "Please, just tell me, do you love me?",
+            "I can't live without knowing, do you love me?"
+        ];
+
+        function handleNoButtonClick() {
+            if (questionIndex < followUpQuestions.length) {
+                document.getElementById('question').innerHTML = `<h2>${followUpQuestions[questionIndex]}</h2><button id='yesBtn' onclick="celebrate()">Yes</button><button id='noBtn' onclick="handleNoButtonClick()">No</button>`;
+                questionIndex++;
+            } else {
+                const noButton = document.getElementById('noBtn');
+                const newX = Math.random() * (noButton.parentElement.offsetWidth - noButton.offsetWidth);
+                const newY = Math.random() * (noButton.parentElement.offsetHeight - noButton.offsetHeight);
+                noButton.style.position = 'absolute';
+                noButton.style.left = `${newX}px`;
+                noButton.style.top = `${newY}px`;
+                const yesButton = document.getElementById('yesBtn');
+                yesButton.style.position = 'relative';
+
+            }
+        }
+
+        function celebrate() {
+            window.location.href = "celebration_page.html";
+        }
+    </script>
+</body>
+
+</html>
